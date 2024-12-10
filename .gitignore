@@ -10,6 +10,7 @@
 
 # Ignore virtual environment
 /env/
+/.venv/
 
 # Ignore VS Code settings
 .vscode/
