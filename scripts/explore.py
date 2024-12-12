@@ -104,22 +104,21 @@ def drop_columns_from_datasets(datasets, columns_to_drop):
 # Function to drop rows without "US" and calculate the number of rows with "US" and non-"US"
 def process_platform_data(datasets, platforms):
     availability_data = []
+    cleaned_datasets = {}  # To store cleaned datasets
     
     for platform, df in zip(platforms, datasets):
-        # Count the number of rows with "US" in the 'availableCountries' column
+        # Count rows with "US"
         us_rows = df[df['availableCountries'].str.contains('US', na=False)]
         non_us_rows = df[~df['availableCountries'].str.contains('US', na=False)]
         
-        # Calculate the total number of rows with "US" and non-"US" and their percentages
+        # Calculate percentages
         total_rows = len(df)
         us_count = len(us_rows)
         non_us_count = len(non_us_rows)
-        
-        # Avoid division by zero if there are no rows
         us_percentage = (us_count / total_rows) * 100 if total_rows > 0 else 0
         non_us_percentage = (non_us_count / total_rows) * 100 if total_rows > 0 else 0
         
-        # Store the availability data
+        # Store availability data
         availability_data.append({
             'platform': platform,
             'us_count': us_count,
@@ -129,19 +128,13 @@ def process_platform_data(datasets, platforms):
         })
         
         # Drop rows without "US"
-        df.drop(df[~df['availableCountries'].str.contains('US', na=False)].index, inplace=True)
-        
-        # Store the cleaned dataset with only rows containing "US"
-        globals()[f"{platform}_df"] = df
+        cleaned_datasets[platform] = us_rows  # Store cleaned dataframe for the platform
     
-    # Convert the availability data into a DataFrame
+    # Save availability data
     availability_df = pd.DataFrame(availability_data)
-    
-    # Save the availability data to a CSV file in the specified directory
     availability_df.to_csv(r'C:\Users\kimbe\Documents\StreamingAnalysis\data\cleaned_data\availability.csv', index=False)
     
-    # Return the cleaned dataframes dynamically
-    return {platform: globals()[f"{platform}_df"] for platform in platforms}
+    return cleaned_datasets
 
 
 # Function to add platform-specific column to each dataset
