@@ -1,6 +1,0 @@
-Platform,Number of US Titles,US Percentage,High Rating Movie (%),High Rating TV (%),Access to Top 25% Titles (numVotes) (%),Access to Top 25% (averageRating) (%),Average IMDb Rating,Top Rated (%),Average Rated (%),Bottom Rated (%)
-Amazon,23188,37.29%,65.14%,34.86%,12.05%,0.94%,5.95,6.32%,38.89%,54.80%
-Apple,11325,67.89%,50.00%,50.00%,3.59%,0.36%,6.37,8.96%,48.15%,42.88%
-HBO,2616,38.35%,54.42%,45.58%,1.60%,0.19%,6.67,11.44%,57.59%,30.97%
-Hulu,2731,30.47%,34.84%,65.16%,1.84%,0.20%,6.56,9.43%,56.56%,34.01%
-Netflix,6937,36.72%,48.66%,51.34%,4.45%,0.35%,6.4,7.47%,51.86%,40.67%
