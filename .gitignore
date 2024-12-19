@@ -21,3 +21,6 @@
 # Ignore backup and temporary files
 *.bak
 *.swp
+
+# Ignore Task 1 document
+/Documents/StreamingAnalysis/D195 - Task 1 KV Signed.docx
